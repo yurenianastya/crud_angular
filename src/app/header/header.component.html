@@ -1,0 +1,12 @@
+<header>
+    <div class="banner">
+        <a>{{ title }}</a>
+        <button mat-raised-button>
+            <mat-icon>add</mat-icon>
+            Add Campaign
+        </button>
+        <mat-slide-toggle
+        (change)="onThemeChange($event.checked)">
+        </mat-slide-toggle>        
+    </div>
+</header>

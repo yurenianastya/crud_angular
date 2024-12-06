@@ -1,0 +1,66 @@
+[
+    {
+      "name": 101,
+      "keywords": ["angular", "typescript", "web development"],
+      "bid_amount": 50.75,
+      "fund": 1000.00,
+      "status": true,
+      "town": "Springfield",
+      "radius": 10
+    },
+    {
+      "name": 102,
+      "keywords": ["javascript", "framework", "frontend"],
+      "bid_amount": 30.50,
+      "fund": 500.00,
+      "status": false,
+      "town": "Shelbyville",
+      "radius": 15
+    },
+    {
+      "name": 103,
+      "keywords": ["css", "design", "ux"],
+      "bid_amount": 20.00,
+      "fund": 750.00,
+      "status": true,
+      "town": "Ogdenville",
+      "radius": 5
+    },
+    {
+      "name": 104,
+      "keywords": ["backend", "api", "nodejs"],
+      "bid_amount": 45.00,
+      "fund": 1200.00,
+      "status": true,
+      "town": "North Haverbrook",
+      "radius": 20
+    },
+    {
+      "name": 105,
+      "keywords": ["responsive", "mobile", "angular"],
+      "bid_amount": 25.50,
+      "fund": 300.00,
+      "status": false,
+      "town": "Capital City",
+      "radius": 12
+    },
+    {
+      "name": 106,
+      "keywords": ["material design", "components", "ui"],
+      "bid_amount": 60.00,
+      "fund": 2000.00,
+      "status": true,
+      "town": "Springfield",
+      "radius": 8
+    },
+    {
+      "name": 107,
+      "keywords": ["unit testing", "karma", "jasmine"],
+      "bid_amount": 35.00,
+      "fund": 850.00,
+      "status": true,
+      "town": "Ogdenville",
+      "radius": 18
+    }
+  ]
+  
