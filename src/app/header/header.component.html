@@ -1,12 +1,17 @@
 <header>
-    <div class="banner">
-        <a>{{ title }}</a>
-        <button mat-raised-button>
-            <mat-icon>add</mat-icon>
-            Add Campaign
+    <mat-toolbar>
+        <a>{{ this.title }}</a>
+        <span class="spacer"></span>
+        <mat-icon>balance</mat-icon>
+        <a> {{ this.balance }} $</a>
+        <button mat-stroked-button (click)="openAndEditCampaignDialog()">
+            <span class="icon-text">
+                <mat-icon>add</mat-icon>
+                @if (!this.isSmallWindow) { Add Campaign }
+            </span>
         </button>
         <mat-slide-toggle
         (change)="onThemeChange($event.checked)">
         </mat-slide-toggle>        
-    </div>
+    </mat-toolbar>
 </header>

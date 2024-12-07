@@ -1,0 +1,37 @@
+
+.table {
+  display: flex;
+  margin: 0.25rem 0;
+  border-radius: 0.25rem;
+}
+
+@media only screen and (max-width: 740px) {
+  .mat-column-keywords {
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 50px;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .mat-mdc-table {
+    .mat-mdc-cell, .mat-mdc-header-cell, .mat-mdc-footer-cell {
+      padding: 0 0.1rem;
+    }
+    .mat-mdc-cell:first-child,
+     .mat-mdc-footer-cell:first-child,
+      .mat-mdc-header-cell:first-child {
+      padding-left: 0;
+    }
+    .mat-mdc-cell:last-child,
+     .mat-mdc-footer-cell:last-child,
+      .mat-mdc-header-cell:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.action-icon:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }

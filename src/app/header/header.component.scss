@@ -1,15 +1,32 @@
 @use '../../styles/styles.scss' as main;
 
-.banner {
-    overflow: hidden;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+
+@media only screen and (max-width: 600px) {
+    header {
+      position: fixed;
+    }
+}
+
+header {
+    position: sticky;
+    top: 0.5rem;
+    z-index: 999;
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
     box-shadow: var(--mat-sys-level2);
     background-color: var(--mat-sys-primary-container);
+}
+
+.mat-toolbar {
+    gap: 0.5rem;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.icon-text {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    a {
-        font-family: var(--mat-sys-title-small-font);
-    }
 }

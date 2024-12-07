@@ -1,8 +1,10 @@
-[
+{
+  "balance": 10000,
+  "campaigns": [
     {
       "name": 101,
       "keywords": ["angular", "typescript", "web development"],
-      "bid_amount": 50.75,
+      "bidAmount": 50.75,
       "fund": 1000.00,
       "status": true,
       "town": "Springfield",
@@ -11,7 +13,7 @@
     {
       "name": 102,
       "keywords": ["javascript", "framework", "frontend"],
-      "bid_amount": 30.50,
+      "bidAmount": 30.50,
       "fund": 500.00,
       "status": false,
       "town": "Shelbyville",
@@ -20,7 +22,7 @@
     {
       "name": 103,
       "keywords": ["css", "design", "ux"],
-      "bid_amount": 20.00,
+      "bidAmount": 20.00,
       "fund": 750.00,
       "status": true,
       "town": "Ogdenville",
@@ -29,7 +31,7 @@
     {
       "name": 104,
       "keywords": ["backend", "api", "nodejs"],
-      "bid_amount": 45.00,
+      "bidAmount": 45.00,
       "fund": 1200.00,
       "status": true,
       "town": "North Haverbrook",
@@ -38,7 +40,7 @@
     {
       "name": 105,
       "keywords": ["responsive", "mobile", "angular"],
-      "bid_amount": 25.50,
+      "bidAmount": 25.50,
       "fund": 300.00,
       "status": false,
       "town": "Capital City",
@@ -47,7 +49,7 @@
     {
       "name": 106,
       "keywords": ["material design", "components", "ui"],
-      "bid_amount": 60.00,
+      "bidAmount": 60.00,
       "fund": 2000.00,
       "status": true,
       "town": "Springfield",
@@ -56,11 +58,11 @@
     {
       "name": 107,
       "keywords": ["unit testing", "karma", "jasmine"],
-      "bid_amount": 35.00,
+      "bidAmount": 35.00,
       "fund": 850.00,
       "status": true,
       "town": "Ogdenville",
       "radius": 18
     }
   ]
-  
+}
