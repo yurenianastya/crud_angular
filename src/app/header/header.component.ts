@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ThemeService } from '../theme.service';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { CampaignManageDialogComponent } from '../campaign-manage-dialog/campaign-manage-dialog.component';
@@ -24,17 +24,17 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class HeaderComponent {
 
-  balance: Number = 0.0;
-  title: String = '';
-  isSmallWindow = false;
+  readonly dialog = inject(MatDialog);
+  readonly campaignService = inject(CampaignService);
+  readonly themeService = inject(ThemeService);
+  readonly observerBreakpoint = inject(BreakpointObserver);
 
-  constructor(
-    private dialog: MatDialog,
-    private campaignService: CampaignService,
-    private themeService: ThemeService,
-    private observer: BreakpointObserver,
-  ) {
-    this.observer.observe([
+  @Input() balance!: number;
+  title!: string;
+  isSmallWindow!: boolean;
+
+  constructor() {
+    this.observerBreakpoint.observe([
       "(max-width: 599px)"
     ]).subscribe((result: BreakpointState) => {
       if (result.matches) {
@@ -51,7 +51,7 @@ export class HeaderComponent {
   getBalance() {
     this.campaignService.getBalance().subscribe({
       next: (res) => {
-        this.balance = res;
+        this.balance = res.value;
       },
       error: (err) => {
         console.log(err);
@@ -68,6 +68,18 @@ export class HeaderComponent {
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {
+          this.balance = this.balance - Number(val);
+          let patchData = {
+            "value": this.balance
+          }
+          this.campaignService.updateBalance(patchData).subscribe({
+            next: (response) => {
+              console.log('Balance updated successfully:', response);
+            },
+            error: (err) => {
+              console.error('Error updating balance:', err);
+            },
+          });;
           this.campaignService.getCampaigns();
         }
       },

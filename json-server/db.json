@@ -1,5 +1,8 @@
 {
-  "balance": 10000,
+  "balance": {
+    "value": 10000,
+    "id": "1"
+  },
   "campaigns": [
     {
       "name": 101,

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 export class CampaignService {
 
   baseUrl: string = "http://localhost:3000/";
+  readonly httpClient = inject(HttpClient);
 
-  constructor(private httpClient: HttpClient) { }
 
   addCampaign(data: any): Observable<any> {
     return this.httpClient.post(this.baseUrl + 'campaigns/', data);
@@ -21,7 +21,7 @@ export class CampaignService {
   }
 
   getCampaigns(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + 'campaigns/');
+    return this.httpClient.get(this.baseUrl + 'campaigns');
   }
 
   getCampaign(id: number): Observable<any> {
@@ -36,8 +36,8 @@ export class CampaignService {
     return this.httpClient.get(this.baseUrl + 'balance');
   }
 
-  updateBalance(balance: number): Observable<any> {
-    return this.httpClient.put(this.baseUrl + 'balance', balance);
+  updateBalance(balance: object): Observable<any> {
+    return this.httpClient.patch(this.baseUrl + 'balance/1', balance);
   }
   
 }

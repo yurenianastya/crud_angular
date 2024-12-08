@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { CampaignService } from '../campaign.service';
 import { CampaignManageDialogComponent } from '../campaign-manage-dialog/campaign-manage-dialog.component';
 
@@ -19,6 +19,10 @@ import { MatIcon } from '@angular/material/icon';
 
 export class CampaignTableComponent {
 
+  @Output() balanceChange = new EventEmitter<number>();
+  readonly campaignService = inject(CampaignService);
+  readonly dialog = inject(MatDialog)
+
   displayedColumns: string[] = [
     'name',
     'keywords',
@@ -29,18 +33,16 @@ export class CampaignTableComponent {
     'radius',
     'action',
   ];
- 
+  
   dataSource!: MatTableDataSource<any>;
-  isSmallWindow = false;
-
-  constructor(
-    private dialog: MatDialog,
-    private campaignService: CampaignService,
-  ) {
-  }
+  isSmallWindow!: boolean;
 
   ngOnInit(): void {
     this.getCampaignList();
+  }
+
+  sendBalanceToHeader(value: number): void {
+    this.balanceChange.emit(value);
   }
 
   getCampaignList() {
@@ -59,7 +61,6 @@ export class CampaignTableComponent {
     if(confirm) {
       this.campaignService.deleteCampaign(id).subscribe({
         next: () => {
-          alert('Campaign deleted.');
           this.getCampaignList();
         },
         error: (err) => {

@@ -15,5 +15,10 @@ import { CampaignTableComponent } from './campaign-table/campaign-table.componen
 })
 
 export class AppComponent {
-  
+
+  updatedBalance!: number;
+
+  updateHeaderBalance(newBalance: number) {
+    this.updatedBalance = newBalance;
+  }
 }
