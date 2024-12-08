@@ -1,15 +1,43 @@
-
 .table {
   display: flex;
   margin: 0.25rem 0;
   border-radius: 0.25rem;
 }
 
-@media only screen and (max-width: 740px) {
-  .mat-column-keywords {
+.action-icon:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.dot {
+  height: 0.5rem;
+  width: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-red {
+  background-color: red;
+}
+.dot-green {
+  background-color: green;
+}
+
+@media only screen and (max-width: 770px) {
+  .mat-column-keywords, .mat-column-town {
     white-space: normal;
     word-wrap: break-word;
+    max-width: 70px;
+  }
+  .mat-column-town {
     max-width: 50px;
+  }
+  .status-text {
+    display: none;
+  }
+  .dot {
+    margin-right: 0;
+    margin-left: 1.0rem;
   }
 }
 
@@ -30,8 +58,3 @@
     }
   }
 }
-
-.action-icon:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }

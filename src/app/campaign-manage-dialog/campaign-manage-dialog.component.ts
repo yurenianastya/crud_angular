@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,36 +39,49 @@ export class CampaignManageDialogComponent {
   public data = inject<DialogData>(MAT_DIALOG_DATA);
 
   campaignForm = this.formBuilder.group({
-    name: [this.data.name || '', Validators.required],
-    keywords: [this.data.keywords || [''], Validators.required],
-    bidAmount: [this.data.bidAmount || 0, Validators.required],
-    fund: [this.data.fund || 0, Validators.required],
-    status: [this.data.status || true, Validators.required],
-    town: [this.data.town || '', Validators.required],
-    radius: [this.data.radius || 0, Validators.required],
+    name: [this.data?.name || '', Validators.required],
+    keywords: [this.data?.keywords || [''], Validators.required],
+    bidAmount: [this.data?.bidAmount || 0, Validators.required],
+    fund: [this.data?.fund || 0, Validators.required],
+    status: [this.data?.status || true, Validators.required],
+    town: [this.data?.town || '', Validators.required],
+    radius: [this.data?.radius || 0, Validators.required],
   })
 
-  onSubmit() {
-    if (this.campaignForm.valid) {
-      if (this.data) {
-        this.campaignService
-        .updateCampaign(this.data.id, this.campaignForm.value)
+  updateCampaignAndBalance(data: DialogData, form: any) {
+    let currentFund = data.fund;
+    let newFund = form.value.fund;
+    this.campaignService
+        .updateCampaign(data.id, form.value)
         .subscribe({
           next: () => {
             this.dialogRef.close(true);
           }, error: (err: any) => {
-            console.error(err);
+            console.error('Error updating campaign: ', err);
           }
         });
+        // balance difference calculation
+        if (currentFund != newFund) {
+          return newFund - currentFund;
+        }
+        return 0;
+  }
+
+  onSubmit() {
+    if (this.campaignForm.valid) {
+      if (this.data) {
+        let balanceDiff = this.updateCampaignAndBalance(this.data, this.campaignForm);
+        this.campaignService.updateBalance(-(balanceDiff));
+        this.dialogRef.close(balanceDiff);
       } else {
         this.campaignService.addCampaign(this.campaignForm.value).subscribe({
-          next: (val: any) => {
+          next: (obj: any) => {
+            this.campaignService.updateBalance(-(obj.fund));
             this.campaignForm.reset();
-            // passing fund value to update balance
-            this.dialogRef.close(val.fund);
+            this.dialogRef.close(true);
           },
           error: (err: any) => {
-            console.error(err);
+            console.error('Error while adding campaign: ', err);
           },
         })
       }

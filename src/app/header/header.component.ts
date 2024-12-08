@@ -1,8 +1,8 @@
-import { Component, inject, Input } from '@angular/core';
-import { ThemeService } from '../theme.service';
+import { Component, inject } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { CampaignManageDialogComponent } from '../campaign-manage-dialog/campaign-manage-dialog.component';
 import { CampaignService } from '../campaign.service';
+import { ThemeService } from '../theme.service';
 
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIcon } from '@angular/material/icon';
@@ -29,11 +29,11 @@ export class HeaderComponent {
   readonly themeService = inject(ThemeService);
   readonly observerBreakpoint = inject(BreakpointObserver);
 
-  @Input() balance!: number;
+  balance!: number;
   title!: string;
   isSmallWindow!: boolean;
 
-  constructor() {
+  ngOnInit() {
     this.observerBreakpoint.observe([
       "(max-width: 599px)"
     ]).subscribe((result: BreakpointState) => {
@@ -45,16 +45,9 @@ export class HeaderComponent {
         this.isSmallWindow = false;
       }
     });
-    this.getBalance();
-  }
-
-  getBalance() {
-    this.campaignService.getBalance().subscribe({
+    this.campaignService.balance$.subscribe({
       next: (res) => {
-        this.balance = res.value;
-      },
-      error: (err) => {
-        console.log(err);
+        this.balance = res;
       },
     });
   }
@@ -63,27 +56,14 @@ export class HeaderComponent {
     this.themeService.toggleTheme(isDarkTheme);
   }
 
-  openAndEditCampaignDialog() {
+  createNewCampaign() {
     const dialogRef = this.dialog.open(CampaignManageDialogComponent);
     dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val) {
-          this.balance = this.balance - Number(val);
-          let patchData = {
-            "value": this.balance
-          }
-          this.campaignService.updateBalance(patchData).subscribe({
-            next: (response) => {
-              console.log('Balance updated successfully:', response);
-            },
-            error: (err) => {
-              console.error('Error updating balance:', err);
-            },
-          });;
-          this.campaignService.getCampaigns();
+      error: (err) => {
+        if (err) {
+          console.error('Error while creating new campaign:', err)
         }
       },
     });
   }
-
 }

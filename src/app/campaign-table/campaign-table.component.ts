@@ -1,10 +1,12 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CampaignService } from '../campaign.service';
 import { CampaignManageDialogComponent } from '../campaign-manage-dialog/campaign-manage-dialog.component';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIcon } from '@angular/material/icon';
+import { NgClass } from '@angular/common';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { MatIcon } from '@angular/material/icon';
   imports: [
     MatIcon,
     MatTableModule,
+    NgClass,
   ],
   templateUrl: './campaign-table.component.html',
   styleUrl: './campaign-table.component.scss',
@@ -19,9 +22,11 @@ import { MatIcon } from '@angular/material/icon';
 
 export class CampaignTableComponent {
 
-  @Output() balanceChange = new EventEmitter<number>();
+  @Output() balanceDiff = new EventEmitter<boolean>();
   readonly campaignService = inject(CampaignService);
   readonly dialog = inject(MatDialog)
+  balance$ = this.campaignService.balance$;
+  private balanceSubscription!: Subscription;
 
   displayedColumns: string[] = [
     'name',
@@ -38,11 +43,9 @@ export class CampaignTableComponent {
   isSmallWindow!: boolean;
 
   ngOnInit(): void {
-    this.getCampaignList();
-  }
-
-  sendBalanceToHeader(value: number): void {
-    this.balanceChange.emit(value);
+    this.balanceSubscription = this.balance$.subscribe(() => {
+      this.getCampaignList();
+    });
   }
 
   getCampaignList() {
@@ -51,20 +54,21 @@ export class CampaignTableComponent {
         this.dataSource = new MatTableDataSource(res);
       },
       error: (err) => {
-        console.log(err);
+        console.error('Error fetching campaign list:', err);
       },
     });
   }
 
-  deleteCampaign(id: number) {
+  deleteCampaign(row: any) {
     let confirm = window.confirm("Are you sure you want to delete this campaign?");
     if(confirm) {
-      this.campaignService.deleteCampaign(id).subscribe({
+      this.campaignService.deleteCampaign(row.id).subscribe({
         next: () => {
+          this.campaignService.updateBalance(row.fund);
           this.getCampaignList();
         },
         error: (err) => {
-          console.log(err);
+          console.error('Error while deleting campaign:', err);
         },
       });
     }
@@ -82,5 +86,9 @@ export class CampaignTableComponent {
         }
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.balanceSubscription.unsubscribe();
   }
 }

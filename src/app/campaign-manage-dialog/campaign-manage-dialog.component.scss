@@ -3,6 +3,13 @@
     justify-content: space-between;
     gap: 0.25rem;
     margin-bottom: 0.2rem;
+    align-items: baseline;
+    .first-row {
+        flex-grow: 1
+    }
+    .keywords {
+        flex-grow: 2;
+    }
 }
 
 .mat-mdc-dialog-content {

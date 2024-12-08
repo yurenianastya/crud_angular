@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { CampaignTableComponent } from './campaign-table/campaign-table.component';
 
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
     HeaderComponent,
     CampaignTableComponent,
   ],
@@ -15,10 +13,4 @@ import { CampaignTableComponent } from './campaign-table/campaign-table.componen
 })
 
 export class AppComponent {
-
-  updatedBalance!: number;
-
-  updateHeaderBalance(newBalance: number) {
-    this.updatedBalance = newBalance;
-  }
 }
