@@ -1,12 +1,12 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { CampaignService } from '../campaign.service';
+import { NgClass } from '@angular/common';
+import { CampaignService } from '../services/campaign.service';
 import { CampaignManageDialogComponent } from '../campaign-manage-dialog/campaign-manage-dialog.component';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIcon } from '@angular/material/icon';
-import { NgClass } from '@angular/common';
 
 
 @Component({

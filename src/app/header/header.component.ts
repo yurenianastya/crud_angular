@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { CampaignManageDialogComponent } from '../campaign-manage-dialog/campaign-manage-dialog.component';
-import { CampaignService } from '../campaign.service';
-import { ThemeService } from '../theme.service';
+import { CampaignService } from '../services/campaign.service';
+import { ThemeService } from '../services/theme.service';
 
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIcon } from '@angular/material/icon';

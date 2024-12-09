@@ -1,13 +1,13 @@
 <header>
     <mat-toolbar>
-        <a>{{ this.title }}</a>
+        <a>{{ title }}</a>
         <span class="spacer"></span>
         <mat-icon>balance</mat-icon>
-        <a> {{ this.balance }} $</a>
+        <a> {{ balance }} $</a>
         <button mat-stroked-button (click)="createNewCampaign()">
             <span class="icon-text">
                 <mat-icon>add</mat-icon>
-                @if (!this.isSmallWindow) { Add Campaign }
+                @if (!isSmallWindow) { Add Campaign }
             </span>
         </button>
         <mat-slide-toggle

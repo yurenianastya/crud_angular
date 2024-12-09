@@ -5,57 +5,41 @@
   "campaigns": [
     {
       "name": "Buy laptops",
-      "keywords": [
-        "Cyber Sale",
-        "Limited Offer",
-        "Mega Sale"
-      ],
+      "keywords": "Limited Edition",
       "bidAmount": 30.5,
       "fund": 500,
       "status": true,
-      "town": "Shelbyville",
+      "town": "Brookhaven",
       "radius": 15,
       "id": "4d4c"
     },
     {
       "name": "Innovative product",
-      "keywords": [
-        "New Arrival",
-        "Clearance",
-        "Premium"
-      ],
+      "keywords": "Exclusive Price",
       "bidAmount": 20,
       "fund": 750,
       "status": true,
-      "town": "Ogdenville",
+      "town": "Fairview",
       "radius": 5,
       "id": "fd71"
     },
     {
       "name": "Presale Videogame",
-      "keywords": [
-        "Limited Offer",
-        "Mega Sale",
-        "Early Access"
-      ],
+      "keywords": "Limited Offer",
       "bidAmount": 45,
       "fund": 1001,
-      "status": true,
-      "town": "North Haverbrook",
+      "status": false,
+      "town": "Ashford",
       "radius": 20,
       "id": "65fd"
     },
     {
       "name": "Winter clothes",
-      "keywords": [
-        "Top Seller",
-        "Exclusive Price",
-        "Seasonal Sale"
-      ],
+      "keywords": "Top Seller",
       "bidAmount": 25.5,
       "fund": 300,
       "status": true,
-      "town": "Capital City",
+      "town": "Maplewood",
       "radius": 12,
       "id": "1f54"
     },
@@ -67,7 +51,7 @@
       ],
       "bidAmount": 60,
       "fund": 2000,
-      "status": true,
+      "status": false,
       "town": "Springfield",
       "radius": 8,
       "id": "d01a"
@@ -81,7 +65,7 @@
       "bidAmount": 35,
       "fund": 850,
       "status": true,
-      "town": "Ogdenville",
+      "town": "Rivertown",
       "radius": 18,
       "id": "f21b"
     }

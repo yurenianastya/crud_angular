@@ -8,7 +8,11 @@
             </mat-form-field>
             <mat-form-field appearance="outline" class="first-row">
                 <mat-label>Town</mat-label>
-                <input matInput formControlName="town">
+                <mat-select formControlName="town" name="town">
+                    @for (town of towns$ | async; track town) {
+                         <mat-option [value]="town">{{town}}</mat-option>
+                        }
+                </mat-select>
             </mat-form-field>
         </div>
         <div class="row">
@@ -28,7 +32,12 @@
         <div class="row">
             <mat-form-field appearance="outline" class="keywords">
                 <mat-label>Keywords</mat-label>
-                <input matInput formControlName="keywords">
+                <input matInput formControlName="keywords" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    @for (keyword of filteredKeywords$ | async; track keyword) {
+                        <mat-option [value]="keyword">{{keyword}}</mat-option>
+                    }
+                </mat-autocomplete>
             </mat-form-field>
             <div>
                 <label>Status</label>
