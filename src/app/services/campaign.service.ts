@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 export class CampaignService {
 
-  baseUrl: string = 'https://crud-angular-hjcung66z-yurenianastyas-projects.vercel.app/api';
+  baseUrl: string = 'https://crud-angular-hjcung66z-yurenianastyas-projects.vercel.app/api/';
   readonly httpClient = inject(HttpClient);
   balanceSubject: BehaviorSubject<number> = new BehaviorSubject(0);
 
